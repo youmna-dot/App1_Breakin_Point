@@ -1,9 +1,15 @@
 // screens/signUp_screen.dart
 import 'package:flutter/material.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,17 +160,23 @@ class SignupScreen extends StatelessWidget {
           SizedBox(height: 20,),
           
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-             Icon(
-              Icons.check_box_outline_blank,
-              color: Colors.orange,),
-              const Text(
+              Checkbox(
+                value: isChecked, 
+                activeColor: Colors.orange,
+                onChanged: (bool? value){
+                  setState(() {
+                    isChecked = value ?? false ;
+                  });
+                },
+              ),
+              Text(
                 'Accept terms & Condition',
                 style: TextStyle(
-                  fontSize: 16, 
-                  color: Colors.orange),
-              ), 
+                  fontSize: 16,
+                  color: Colors.orange,
+                ),
+              )
             ],
           ),
           SizedBox(height: 20),
